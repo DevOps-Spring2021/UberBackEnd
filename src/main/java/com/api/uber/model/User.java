@@ -2,9 +2,13 @@ package com.api.uber.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class User {
+public class User  implements Serializable {
+
+    public User(){
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,7 +18,7 @@ public class User {
 
     private String lastName;
 
-    private String email;
+    private String username;
 
 
     @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
@@ -32,8 +36,8 @@ public class User {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -52,8 +56,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
