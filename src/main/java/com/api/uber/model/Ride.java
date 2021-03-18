@@ -7,7 +7,7 @@ import java.util.Date;
 public class Ride {
 
     public Ride(){
-        
+
     }
 
     @Id
@@ -28,9 +28,14 @@ public class Ride {
 
     private boolean isComplete;
 
+    private boolean cancel;
+
     @Lob
     private String feedback;
 
+    @ManyToOne
+    @JoinColumn()
+    private User userID;
 
     public Long getRideID() {
         return rideID;
@@ -102,5 +107,13 @@ public class Ride {
 
     public void setFeedback(String feedback) {
         this.feedback = feedback;
+    }
+
+    public boolean isCancel() {
+        return cancel;
+    }
+
+    public void setCancel(boolean cancel) {
+        this.cancel = cancel;
     }
 }
