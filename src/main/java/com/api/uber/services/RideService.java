@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
 
 @Service
 public class RideService {
@@ -27,5 +28,9 @@ public class RideService {
 
     public void saveRide (Ride r){
         repository.save(r);
+    }
+
+    public LinkedHashSet<Ride> getUserRides(Long userID){
+        return repository.ridesByUserID(userID);
     }
 }
