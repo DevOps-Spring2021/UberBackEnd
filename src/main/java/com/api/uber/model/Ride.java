@@ -116,4 +116,12 @@ public class Ride {
     public void setCancel(boolean cancel) {
         this.cancel = cancel;
     }
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
+    }
 }

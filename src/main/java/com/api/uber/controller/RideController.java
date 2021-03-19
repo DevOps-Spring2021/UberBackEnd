@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashSet;
+
 
 @Controller
 @RestController
@@ -102,6 +104,24 @@ public class RideController {
             } else {
                 log.info("ride not found, rideID:"+id);
                 return new ResponseEntity<>("Ride not found", HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value="/all", method = RequestMethod.GET,  produces = "application/json")
+    public  ResponseEntity<Object> getAllRides() {
+        try {
+            //user id
+            LinkedHashSet<Ride> list = rideService.getUserRides(id);
+            if(list != null) {
+                log.info("all rides of userID:"+ id);
+                return new ResponseEntity<>(list,HttpStatus.OK);
+            } else {
+                log.info("user not found, userID:"+id);
+                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
             log.error(e.getMessage());
