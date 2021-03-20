@@ -15,6 +15,7 @@ import java.util.LinkedHashSet;
 
 @Controller
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/v1/rides/**")
 public class RideController {
 
@@ -115,14 +116,15 @@ public class RideController {
     public  ResponseEntity<Object> getAllRides() {
         try {
             //user id
-            LinkedHashSet<Ride> list = rideService.getUserRides(id);
-            if(list != null) {
-                log.info("all rides of userID:"+ id);
-                return new ResponseEntity<>(list,HttpStatus.OK);
-            } else {
-                log.info("user not found, userID:"+id);
-                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-            }
+            //LinkedHashSet<Ride> list = rideService.getUserRides(id);
+//            if(list != null) {
+//                //log.info("all rides of userID:"+ id);
+//                return new ResponseEntity<>(list,HttpStatus.OK);
+//            } else {
+//                //log.info("user not found, userID:"+id);
+//                return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+//            }
+            return null;
         }catch (Exception e){
             log.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

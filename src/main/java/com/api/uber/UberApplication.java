@@ -12,9 +12,4 @@ public class UberApplication {
         SpringApplication.run(UberApplication.class, args);
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 }
