@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 @Controller
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/v1/users/**")
 public class UserController {
 
@@ -25,28 +26,27 @@ public class UserController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-
-    @RequestMapping(value="/signup", method = RequestMethod.POST,  produces = "application/json")
-    public ResponseEntity<Object> createUser(@RequestBody User user, BindingResult result) {
-
-        try{
-            validator.validate(user, result);
-
-            if (result.hasErrors()) {
-                return new ResponseEntity<>( result.getFieldErrors(), HttpStatus.BAD_REQUEST);
-            }else {
-                userService.saveUser(user);
-                log.info("User created, UserID:" + user.getUserID());
-                return new ResponseEntity<>(user, HttpStatus.CREATED);
-            }
-
-        }catch (Exception e){
-            log.error(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-
-        }
-
-    }
+//    @RequestMapping(value="/signup", method = RequestMethod.POST,  produces = "application/json")
+//    public ResponseEntity<Object> createUser(@RequestBody User user, BindingResult result) {
+//
+//        try{
+//            validator.validate(user, result);
+//
+//            if (result.hasErrors()) {
+//                return new ResponseEntity<>( result.getFieldErrors(), HttpStatus.BAD_REQUEST);
+//            }else {
+//                userService.saveUser(user);
+//                log.info("User created, UserID:" + user.getUserID());
+//                return new ResponseEntity<>(user, HttpStatus.CREATED);
+//            }
+//
+//        }catch (Exception e){
+//            log.error(e.getMessage());
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//
+//        }
+//
+//    }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET,  produces = "application/json")
     public ResponseEntity<Object> getUserBYID(@PathVariable("id") Long id){
@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.PUT,  produces = "application/json")
-    public  ResponseEntity<Object> updateUser(@RequestBody User user,@PathVariable("id") Long id) {
+    public  ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable("id") Long id) {
         try {
             User newUser = userService.updateUser(user,id);
             log.info("User updated, UserID:"+user.getUserID());
