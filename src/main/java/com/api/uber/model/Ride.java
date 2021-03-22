@@ -14,6 +14,10 @@ public class Ride {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long rideID;
 
+    private String pickupPlaceId;
+
+    private String destinationPlaceId;
+
     private String pickup;
 
     private String destination;
@@ -124,4 +128,20 @@ public class Ride {
     public void setUserID(User userID) {
         this.userID = userID;
     }
+    public String getPickupPlaceId() {
+        return pickupPlaceId;
+    }
+
+    public void setPickupPlaceId(String pickupPlaceId) {
+        this.pickupPlaceId = pickupPlaceId;
+    }
+
+    public String getDestinationPlaceId() {
+        return destinationPlaceId;
+    }
+
+    public void setDestinationPlaceId(String destinationPlaceId) {
+        this.destinationPlaceId = destinationPlaceId;
+    }
+
 }
