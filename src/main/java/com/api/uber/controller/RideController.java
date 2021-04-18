@@ -2,6 +2,8 @@ package com.api.uber.controller;
 
 import com.api.uber.model.Ride;
 import com.api.uber.model.User;
+import com.api.uber.model.Bus;
+import com.api.uber.services.BusService;
 import com.api.uber.services.RideService;
 import com.api.uber.services.UserService;
 import netscape.javascript.JSObject;
@@ -27,7 +29,8 @@ public class RideController {
     RideService rideService;
     @Autowired
     UserService userService;
-
+    @Autowired
+    BusService busService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
@@ -38,6 +41,7 @@ public class RideController {
         try{
             ride.setUserID(user);
             ride = rideService.createRide(ride);
+            busService.bookSeat(ride.getBusId(), ride.getSeats());
             log.info("ride booked, rideID:" + ride.getRideID());
             return new ResponseEntity<>(ride, HttpStatus.CREATED);
         }catch (Exception e){
@@ -108,6 +112,7 @@ public class RideController {
             if(ride!= null && !ride.isComplete()) {
                 ride.setCancel(true);
                 rideService.saveRide(ride);
+                busService.removeSeat(ride.getBusId(), ride.getSeats());
                 log.info("ride canceled, rideID:"+ id);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {

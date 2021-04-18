@@ -22,7 +22,7 @@ public class MapsController {
     public String getLocations(@PathVariable("searchTerm") String searchTerm) {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(
-                "https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+searchTerm+"&key=AIzaSyBkVS8RGY7sRZlk5LBh3-UprOGVKOVvi-w",
+                "https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+searchTerm+"&key=AIzaSyB2HFlhQEag0ziQjl7LULqobeCEmInPAX0",
                 String.class);
         return result;
     }
@@ -30,7 +30,7 @@ public class MapsController {
     public String getLatLng(@PathVariable("placeId") String placeId) {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(
-                "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyBkVS8RGY7sRZlk5LBh3-UprOGVKOVvi-w",
+                "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyB2HFlhQEag0ziQjl7LULqobeCEmInPAX0",
                 String.class);
         return result;
     }
