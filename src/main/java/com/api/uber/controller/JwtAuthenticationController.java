@@ -2,6 +2,7 @@ package com.api.uber.controller;
 
 import java.util.Objects;
 
+import com.api.uber.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,6 +36,9 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -49,6 +53,10 @@ public class JwtAuthenticationController {
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
+        User presentUser = userService.findByUserName(user.getUsername());
+        if(presentUser !=null){
+            return ResponseEntity.badRequest().body("Username already exists");
+        }
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 

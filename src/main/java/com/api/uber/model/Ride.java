@@ -6,12 +6,12 @@ import java.util.Date;
 @Entity
 public class Ride {
 
-    public Ride(){
+    public Ride() {
 
     }
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long rideID;
 
     private String pickupPlaceId;
@@ -33,6 +33,10 @@ public class Ride {
     private boolean isComplete;
 
     private boolean cancel;
+
+    private Integer seats;
+
+    private long busId;
 
     @Lob
     private String feedback;
@@ -128,6 +132,7 @@ public class Ride {
     public void setUserID(User userID) {
         this.userID = userID;
     }
+
     public String getPickupPlaceId() {
         return pickupPlaceId;
     }
@@ -144,4 +149,19 @@ public class Ride {
         this.destinationPlaceId = destinationPlaceId;
     }
 
+    public Integer getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Integer seats) {
+        this.seats = seats;
+    }
+
+    public long getBusId() {
+        return busId;
+    }
+
+    public void setBusId(long busId) {
+        this.busId = busId;
+    }
 }
