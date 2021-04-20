@@ -14,6 +14,7 @@ public class Bus implements Serializable {
     private String sourceId;
     private String destinationId;
     private Integer totalSeats;
+    private String busName;
 
     public Long getBusID() {
         return busID;
@@ -61,5 +62,13 @@ public class Bus implements Serializable {
 
     public void setDestinationId(String destinationId) {
         this.destinationId = destinationId;
+    }
+
+    public String getBusName() {
+        return busName;
+    }
+
+    public void setBusName(String busName) {
+        this.busName = busName;
     }
 }

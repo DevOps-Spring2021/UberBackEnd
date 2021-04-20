@@ -24,7 +24,7 @@ public class Ride {
 
     private Date rideDate;
 
-    private long cost;
+    private double cost;
 
     private String rideDuration;
 
@@ -77,11 +77,11 @@ public class Ride {
         this.rideDate = rideDate;
     }
 
-    public long getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(long cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 

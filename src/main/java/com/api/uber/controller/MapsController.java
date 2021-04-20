@@ -1,5 +1,6 @@
 package com.api.uber.controller;
 
+import com.api.uber.model.Bus;
 import com.api.uber.model.User;
 import com.api.uber.services.UserService;
 import com.api.uber.validator.UserValidator;
@@ -31,6 +32,16 @@ public class MapsController {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(
                 "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyB2HFlhQEag0ziQjl7LULqobeCEmInPAX0",
+                String.class);
+        return result;
+    }
+    @RequestMapping(value = "/distance", method = RequestMethod.POST, produces = "application/json")
+    public String getDistance(@RequestBody Bus bus) {
+        String source = bus.getSourceId();
+        String destination = bus.getDestinationId();
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(
+                "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:"+source+"&destinations=place_id:"+destination+"&key=AIzaSyB2HFlhQEag0ziQjl7LULqobeCEmInPAX0",
                 String.class);
         return result;
     }
