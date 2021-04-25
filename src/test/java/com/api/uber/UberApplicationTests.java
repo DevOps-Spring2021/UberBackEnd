@@ -3,11 +3,11 @@ package com.api.uber;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class UberApplicationTests {
 
-//    @Test
-//    void contextLoads() {
-//    }
+    @Test
+    void contextLoads() {
+    }
 
 }
